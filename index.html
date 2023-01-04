@@ -6,12 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fight Game</title>
     <link rel="stylesheet" href = "styles.css">
+    <link rel="stylesheet" href = "box-rules.css">
+    <link rel="stylesheet" href = "player-health.css">
+    <link rel="stylesheet" href = "timer.css">
+    <link rel="stylesheet" href = "base-Bar.css">
+    <link rel="stylesheet" href = "enemy-health.css">
 </head>
 <body>
     <div class="container">
-    <canvas></canvas>
+        <div class= "box-rules">
+            <!--Player bar Health-->
+            <div style="position: relative; height: 30px; width: 100%;">
+            <div class="base-Bar"></div>
+            <div id = 'player-health'class="player-health"></div>
+            </div>
+            
+            <!-- TIMER -->
+            <div class="timer"></div>
+           
+            <!--Enemy bar Health-->
+            <div style="position: relative; height: 30px; width: 100%;">
+                <div class="base-Bar"></div>
+                <div id = 'enemy-health' class= "enemy-health"></div>
+            </div> 
+        </div>
+        <canvas></canvas>
     </div>
+    <script src="index.js"></script>
 </body>
 </html>
 
-<script src="index.js"></script>
