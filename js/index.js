@@ -7,12 +7,23 @@ canvas.height = 576;
 c.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.6;
+
 const background = new Sprite({
   position: {
     x: 0,
     y: 0,
   },
   imageSrc: "./assets/background.png",
+});
+
+const poster = new Sprite({
+  position: {
+    x: 625,
+    y: 232.5,
+  },
+  imageSrc: "./assets/poster.png",
+  scale: 0.15,
+  framesMax: 15,
 });
 
 const player = new Fighter({
@@ -76,7 +87,7 @@ function animate() {
   c.fillStyle = "black";
   c.fillRect(0, 0, canvas.width, canvas.height);
   background.update();
-
+  poster.update();
   player.update();
   enemy.update();
 
