@@ -39,6 +39,13 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
+  imageSrc: "./assets/player/idle.png",
+  framesMax: 10,
+  scale: 3.5,
+  offset: {
+    x: 160,
+    y: 160,
+  },
 });
 
 const enemy = new Fighter({
@@ -89,7 +96,7 @@ function animate() {
   background.update();
   poster.update();
   player.update();
-  enemy.update();
+  //enemy.update();
 
   player.velocity.x = 0;
   enemy.velocity.x = 0;
