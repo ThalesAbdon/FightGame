@@ -115,6 +115,7 @@ class Fighter extends Sprite {
   }
 
   attack() {
+    this.switchSprite("attack");
     this.isAttacking = true;
     setTimeout(() => {
       this.isAttacking = false;
@@ -122,11 +123,17 @@ class Fighter extends Sprite {
   }
 
   switchSprite(sprite) {
+    if (
+      this.image === this.sprites.attack.image &&
+      this.framesCurrent < this.sprites.attack.framesMax - 1
+    )
+      return;
     switch (sprite) {
       case "idle":
         if (this.image !== this.sprites.idle.image) {
           this.image = this.sprites.idle.image;
           this.framesMax = this.sprites.idle.framesMax;
+          this.framesHold = this.sprites.idle.framesHold;
           this.framesCurrent = 0;
         }
         break;
@@ -134,6 +141,7 @@ class Fighter extends Sprite {
         if (this.image !== this.sprites.run.image) {
           this.image = this.sprites.run.image;
           this.framesMax = this.sprites.run.framesMax;
+          this.framesHold = this.sprites.run.framesHold;
           this.framesCurrent = 0;
         }
         break;
@@ -141,6 +149,7 @@ class Fighter extends Sprite {
         if (this.image !== this.sprites.jump.image) {
           this.image = this.sprites.jump.image;
           this.framesMax = this.sprites.jump.framesMax;
+          this.framesHold = this.sprites.jump.framesHold;
           this.framesCurrent = 0;
         }
         break;
@@ -148,6 +157,15 @@ class Fighter extends Sprite {
         if (this.image !== this.sprites.fall.image) {
           this.image = this.sprites.fall.image;
           this.framesMax = this.sprites.fall.framesMax;
+          this.framesHold = this.sprites.attack.framesHold;
+          this.framesCurrent = 0;
+        }
+        break;
+      case "attack":
+        if (this.image !== this.sprites.attack.image) {
+          this.image = this.sprites.attack.image;
+          this.framesMax = this.sprites.attack.framesMax;
+          this.framesHold = this.sprites.attack.framesHold;
           this.framesCurrent = 0;
         }
         break;

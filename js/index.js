@@ -50,21 +50,31 @@ const player = new Fighter({
     idle: {
       imageSrc: "./assets/player/idle.png",
       framesMax: 10,
+      framesHold: 4,
     },
     run: {
       imageSrc: "./assets/player/Run.png",
       framesMax: 8,
       image: new Image(),
+      framesHold: 4,
     },
     jump: {
       imageSrc: "./assets/player/Jump.png",
       framesMax: 3,
+      framesHold: 4,
       image: new Image(),
     },
     fall: {
       imageSrc: "./assets/player/fall.png",
       framesMax: 3,
+      framesHold: 4,
       image: new Image(),
+    },
+    attack: {
+      imageSrc: "./assets/player/Attack3.png",
+      framesMax: 8,
+      image: new Image(),
+      framesHold: 2,
     },
   },
 });
