@@ -77,6 +77,14 @@ const player = new Fighter({
       framesHold: 2,
     },
   },
+  attackBox: {
+    offset: {
+      x: 150,
+      y: 50,
+    },
+    width: 100,
+    height: 50,
+  },
 });
 
 const enemy = new Fighter({
@@ -129,6 +137,14 @@ const enemy = new Fighter({
       image: new Image(),
       framesHold: 2,
     },
+  },
+  attackBox: {
+    offset: {
+      x: -185,
+      y: 50,
+    },
+    width: 105,
+    height: 50,
   },
 });
 
@@ -201,9 +217,14 @@ function animate() {
     enemy.switchSprite("fall");
   }
 
+  if (player.isAttacking & (player.framesCurrent === 4)) {
+    player.isAttacking = false;
+  }
+
   if (
     rectangularCollision({ rectangule1: player, rectangule2: enemy }) &
-    player.isAttacking
+    player.isAttacking &
+    (player.framesCurrent === 3)
   ) {
     player.isAttacking = false;
     enemy.health -= 20;
@@ -212,7 +233,8 @@ function animate() {
 
   if (
     rectangularCollision({ rectangule1: enemy, rectangule2: player }) &
-    enemy.isAttacking
+    enemy.isAttacking &
+    (enemy.framesCurrent === 3)
   ) {
     enemy.isAttacking = false;
     player.health -= 20;
@@ -221,6 +243,9 @@ function animate() {
 
   if (enemy.health <= 0 || player.health <= 0) {
     determineWinner({ player, enemy, timerId });
+  }
+  if (enemy.isAttacking & (enemy.framesCurrent === 3)) {
+    enemy.isAttacking = false;
   }
 }
 
