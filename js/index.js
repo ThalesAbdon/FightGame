@@ -143,7 +143,7 @@ const enemy = new Fighter({
       x: -185,
       y: 50,
     },
-    width: 105,
+    width: 100,
     height: 50,
   },
 });
