@@ -99,6 +99,12 @@ class Fighter extends Sprite {
   }
 
   update() {
+    // if (enemy.position.x > player.position.x) {
+    //   console.log("oi");
+    // } else {
+    //   console.log("tchau");
+    // }
+
     this.draw();
     this.animateFrames();
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;

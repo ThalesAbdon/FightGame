@@ -92,7 +92,44 @@ const enemy = new Fighter({
     x: -50,
     y: 0,
   },
-  color: "purple",
+  imageSrc: "./assets/enemy/idle.png",
+  framesMax: 11,
+  scale: 3.2,
+  offset: {
+    x: 160,
+    y: 174,
+  },
+  sprites: {
+    idle: {
+      imageSrc: "./assets/enemy/idle.png",
+      framesMax: 11,
+      framesHold: 4,
+    },
+    run: {
+      imageSrc: "./assets/enemy/Run.png",
+      framesMax: 8,
+      image: new Image(),
+      framesHold: 4,
+    },
+    jump: {
+      imageSrc: "./assets/enemy/Jump.png",
+      framesMax: 3,
+      framesHold: 4,
+      image: new Image(),
+    },
+    fall: {
+      imageSrc: "./assets/enemy/fall.png",
+      framesMax: 3,
+      framesHold: 4,
+      image: new Image(),
+    },
+    attack: {
+      imageSrc: "./assets/enemy/Attack2.png",
+      framesMax: 7,
+      image: new Image(),
+      framesHold: 2,
+    },
+  },
 });
 
 enemy.draw();
@@ -127,7 +164,7 @@ function animate() {
   background.update();
   poster.update();
   player.update();
-  //enemy.update();
+  enemy.update();
 
   player.velocity.x = 0;
   enemy.velocity.x = 0;
@@ -147,11 +184,23 @@ function animate() {
   } else if (player.velocity.y > 0) {
     player.switchSprite("fall");
   }
+
   if (keys.ArrowLeft.pressed & (enemy.lastKey === "ArrowLeft")) {
     enemy.velocity.x = -5;
+    enemy.switchSprite("run");
   } else if (keys.ArrowRight.pressed & (enemy.lastKey === "ArrowRight")) {
     enemy.velocity.x = 5;
+    enemy.switchSprite("run");
+  } else {
+    enemy.switchSprite("idle");
   }
+
+  if (enemy.velocity.y < 0) {
+    enemy.switchSprite("jump");
+  } else if (enemy.velocity.y > 0) {
+    enemy.switchSprite("fall");
+  }
+
   if (
     rectangularCollision({ rectangule1: player, rectangule2: enemy }) &
     player.isAttacking
@@ -204,6 +253,9 @@ window.addEventListener("keydown", (event) => {
     case "ArrowRight":
       keys.ArrowRight.pressed = true;
       enemy.lastKey = "ArrowRight";
+      break;
+    case "0":
+      enemy.attack();
       break;
   }
 });
