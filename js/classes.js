@@ -91,6 +91,7 @@ class Fighter extends Sprite {
     this.framesElapsed = 0;
     this.framesHold = 4;
     this.sprites = sprites;
+    this.dead = false;
     for (const sprite in sprites) {
       sprites[sprite].image = new Image();
       sprites[sprite].image.src = sprites[sprite].imageSrc;
@@ -107,7 +108,7 @@ class Fighter extends Sprite {
     // }
 
     this.draw();
-    this.animateFrames();
+    if (!this.dead) this.animateFrames();
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
@@ -134,10 +135,31 @@ class Fighter extends Sprite {
     this.isAttacking = true;
   }
 
+  takeHit() {
+    this.health -= 10;
+    this.framesCurrent = 0;
+    if (this.health <= 0) {
+      this.switchSprite("death");
+    } else {
+      this.switchSprite("takeHit");
+    }
+  }
+
   switchSprite(sprite) {
+    if (this.image === this.sprites.death.image) {
+      if (this.framesCurrent === this.sprites.death.framesMax - 1)
+        this.dead = true;
+      return;
+    }
     if (
       this.image === this.sprites.attack.image &&
       this.framesCurrent < this.sprites.attack.framesMax - 1
+    )
+      return;
+
+    if (
+      this.image === this.sprites.takeHit.image &&
+      this.framesCurrent < this.sprites.takeHit.framesMax - 1
     )
       return;
     switch (sprite) {
@@ -178,6 +200,20 @@ class Fighter extends Sprite {
           this.image = this.sprites.attack.image;
           this.framesMax = this.sprites.attack.framesMax;
           this.framesHold = this.sprites.attack.framesHold;
+          this.framesCurrent = 0;
+        }
+        break;
+      case "takeHit":
+        if (this.image !== this.sprites.takeHit.image) {
+          this.image = this.sprites.takeHit.image;
+          this.framesMax = this.sprites.takeHit.framesMax;
+        }
+        break;
+      case "death":
+        if (this.image !== this.sprites.death.image) {
+          this.image = this.sprites.death.image;
+          this.framesMax = this.sprites.death.framesMax;
+          this.scale = this.sprites.death.scale;
           this.framesCurrent = 0;
         }
         break;
