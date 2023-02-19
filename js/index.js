@@ -197,6 +197,8 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
   background.update();
   poster.update();
+  c.fillStyle = "rgba(255,255,255, 0.1)";
+  c.fillRect(0, 0, canvas.width, canvas.height);
   player.update();
   enemy.update();
 
@@ -235,10 +237,6 @@ function animate() {
     enemy.switchSprite("fall");
   }
 
-  if (player.isAttacking & (player.framesCurrent === 4)) {
-    player.isAttacking = false;
-  }
-
   if (
     rectangularCollision({ rectangule1: player, rectangule2: enemy }) &
     player.isAttacking &
@@ -246,7 +244,13 @@ function animate() {
   ) {
     enemy.takeHit();
     player.isAttacking = false;
-    document.querySelector("#enemy-health").style.width = enemy.health + "%";
+    gsap.to("#enemy-health", {
+      width: enemy.health + "%",
+    });
+  }
+
+  if (player.isAttacking & (player.framesCurrent === 4)) {
+    player.isAttacking = false;
   }
 
   if (
@@ -256,7 +260,13 @@ function animate() {
   ) {
     player.takeHit();
     enemy.isAttacking = false;
-    document.querySelector("#player-health").style.width = player.health + "%";
+    gsap.to("#player-health", {
+      width: player.health + "%",
+    });
+  }
+
+  if (enemy.isAttacking && enemyframesCurrent === 2) {
+    enemy.isAttacking = false;
   }
 
   if (enemy.health <= 0 || player.health <= 0) {

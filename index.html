@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Fight Game</title>
     <link rel="stylesheet" href = "css/styles.css">
     <link rel="stylesheet" href = "css/box-rules.css">
@@ -17,28 +20,31 @@
 
         <div class= "box-rules">
             <!--Player bar Health-->
-            <div style="position: relative; height: 30px; width: 100%;">
+            <div style="position: relative;width: 100%; display: flex; justify-content: flex-end; border-top: 4px solid white;
+            border-left: 4px solid white;border-bottom: 4px solid white;">
             <div class="base-Bar"></div>
             <div id = 'player-health'class="player-health"></div>
             </div>
             
             <!-- TIMER -->
-            <div id="timer" class="timer">10</div>
+            <div id="timer" class="timer">60</div>
            
             <!--Enemy bar Health-->
-            <div style="position: relative; height: 30px; width: 100%;">
+            <div style="position: relative;width: 100%; display: flex; justify-content: flex-end; border-top: 4px solid white;
+            border-right: 4px solid white;border-bottom: 4px solid white;">
                 <div class="base-Bar"></div>
                 <div id = 'enemy-health' class= "enemy-health"></div>
             </div> 
         </div>
 
 
-        <div id="displayResult" style="position: absolute; color: white; display: none;">
+        <div id="displayResult" style="position: absolute; color: white; display: none; font-size: medium;">
             TIE
         </div>
 
         <canvas></canvas>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/utils.js"></script>
     <script src="js/classes.js"></script>
     <script src="js/index.js"></script>
