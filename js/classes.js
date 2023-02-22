@@ -31,7 +31,6 @@ class Sprite {
       this.image.height * this.scale
     );
   }
-
   animateFrames() {
     this.framesElapsed++;
 
@@ -101,26 +100,27 @@ class Fighter extends Sprite {
   }
 
   update() {
-    // if (enemy.position.x > player.position.x) {
-    //   console.log("oi");
-    // } else {
-    //   console.log("tchau");
-    // }
-
     this.draw();
     if (!this.dead) this.animateFrames();
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
+    // ATTACK BOX
     // c.fillRect(
     //   this.attackBox.position.x,
     //   this.attackBox.position.y,
     //   this.attackBox.width,
     //   this.attackBox.height
     // );
-
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
+    if (player.position.x <= -75) {
+      player.position.x = -75;
+    }
+
+    if (enemy.position.x <= -75) {
+      enemy.position.x = -75;
+    }
 
     if (this.position.y + this.height + this.velocity.y >= canvas.height - 80) {
       this.velocity.y = 0;
@@ -128,6 +128,8 @@ class Fighter extends Sprite {
     } else {
       this.velocity.y += gravity;
     }
+
+    this.sprites.attack.image.src = this.sprites.attack.image.src;
   }
 
   attack() {
@@ -151,15 +153,22 @@ class Fighter extends Sprite {
         this.dead = true;
       return;
     }
+
     if (
-      this.image === this.sprites.attack.image &&
-      this.framesCurrent < this.sprites.attack.framesMax - 1
+      this.image ===
+        (this.sprites.attack.image || this.sprites.attackReverse.image) &&
+      this.framesCurrent <
+        (this.sprites.attack.framesMax - 1 ||
+          this.sprites.attackReverse.framesMax - 1)
     )
       return;
 
     if (
-      this.image === this.sprites.takeHit.image &&
-      this.framesCurrent < this.sprites.takeHit.framesMax - 1
+      this.image ===
+        (this.sprites.takeHit.image || this.sprites.takeHitReverse.image) &&
+      this.framesCurrent <
+        (this.sprites.takeHit.framesMax - 1 ||
+          this.sprites.takeHitReverse.framesMax - 1)
     )
       return;
     switch (sprite) {
@@ -171,11 +180,27 @@ class Fighter extends Sprite {
           this.framesCurrent = 0;
         }
         break;
+      case "idleReverse":
+        if (this.image !== this.sprites.idleReverse.image) {
+          this.image = this.sprites.idleReverse.image;
+          this.framesMax = this.sprites.idleReverse.framesMax;
+          this.framesHold = this.sprites.idleReverse.framesHold;
+          this.framesCurrent = 0;
+        }
+        break;
       case "run":
         if (this.image !== this.sprites.run.image) {
           this.image = this.sprites.run.image;
           this.framesMax = this.sprites.run.framesMax;
           this.framesHold = this.sprites.run.framesHold;
+          this.framesCurrent = 0;
+        }
+        break;
+      case "runReverse":
+        if (this.image !== this.sprites.runReverse.image) {
+          this.image = this.sprites.runReverse.image;
+          this.framesMax = this.sprites.runReverse.framesMax;
+          this.framesHold = this.sprites.runReverse.framesHold;
           this.framesCurrent = 0;
         }
         break;
@@ -187,34 +212,90 @@ class Fighter extends Sprite {
           this.framesCurrent = 0;
         }
         break;
+      case "jumpReverse":
+        if (this.image !== this.sprites.jumpReverse.image) {
+          this.image = this.sprites.jumpReverse.image;
+          this.framesMax = this.sprites.jumpReverse.framesMax;
+          this.framesHold = this.sprites.jumpReverse.framesHold;
+          this.framesCurrent = 0;
+        }
+        break;
       case "fall":
         if (this.image !== this.sprites.fall.image) {
           this.image = this.sprites.fall.image;
           this.framesMax = this.sprites.fall.framesMax;
-          this.framesHold = this.sprites.attack.framesHold;
+          this.framesHold = this.sprites.fall.framesHold;
+          this.framesCurrent = 0;
+        }
+        break;
+      case "fallReverse":
+        if (this.image !== this.sprites.fallReverse.image) {
+          this.image = this.sprites.fallReverse.image;
+          this.framesMax = this.sprites.fallReverse.framesMax;
+          this.framesHold = this.sprites.fallReverse.framesHold;
           this.framesCurrent = 0;
         }
         break;
       case "attack":
-        if (this.image !== this.sprites.attack.image) {
-          this.image = this.sprites.attack.image;
-          this.framesMax = this.sprites.attack.framesMax;
-          this.framesHold = this.sprites.attack.framesHold;
-          this.framesCurrent = 0;
+        if (
+          this.image !== this.sprites.attack.image ||
+          this.sprites.attack2.image
+        ) {
+          if (player.position.x >= enemy.position.x) {
+            this.sprites.attack.image.src =
+              this.sprites.attackReverse.image.src;
+            this.image = this.sprites.attack.image;
+            this.framesMax = this.sprites.attack.framesMax;
+            this.framesHold = this.sprites.attack.framesHold;
+            this.framesCurrent = 0;
+          }
+          if (enemy.position.x >= player.position.x) {
+            this.sprites.attack.image.src = this.sprites.attackAux.image.src;
+            this.image = this.sprites.attack.image;
+            this.framesMax = this.sprites.attack.framesMax;
+            this.framesHold = this.sprites.attack.framesHold;
+            this.framesCurrent = 0;
+          }
         }
         break;
       case "takeHit":
-        if (this.image !== this.sprites.takeHit.image) {
-          this.image = this.sprites.takeHit.image;
-          this.framesMax = this.sprites.takeHit.framesMax;
+        if (
+          this.image !== this.sprites.takeHitReverse.image ||
+          this.sprites.takeHitReverse.image
+        ) {
+          if (player.position.x >= enemy.position.x) {
+            this.sprites.takeHit.image.src =
+              this.sprites.takeHitReverse.image.src;
+            this.image = this.sprites.takeHit.image;
+            this.framesMax = this.sprites.takeHitReverse.framesMax;
+            this.framesCurrent = 0;
+          } else {
+            this.sprites.takeHit.image.src = this.sprites.takeHitAux.image.src;
+            this.image = this.sprites.takeHit.image;
+            this.framesMax = this.sprites.takeHitReverse.framesMax;
+            this.framesCurrent = 0;
+          }
         }
         break;
       case "death":
-        if (this.image !== this.sprites.death.image) {
-          this.image = this.sprites.death.image;
-          this.framesMax = this.sprites.death.framesMax;
-          this.scale = this.sprites.death.scale;
-          this.framesCurrent = 0;
+        if (
+          this.image !== this.sprites.death.image ||
+          this.sprites.deathReverse.image
+        ) {
+          if (player.position.x >= enemy.position.x) {
+            this.sprites.death.image.src = this.sprites.deathReverse.image.src;
+            this.image = this.sprites.death.image;
+            this.framesMax = this.sprites.death.framesMax;
+            this.scale = this.sprites.deathReverse.scale;
+
+            this.framesCurrent = 0;
+          } else {
+            this.sprites.death.image.src = this.sprites.deathAux.image.src;
+            this.image = this.sprites.death.image;
+            this.framesMax = this.sprites.death.framesMax;
+            this.scale = this.sprites.death.scale;
+            this.framesCurrent = 0;
+          }
         }
         break;
     }

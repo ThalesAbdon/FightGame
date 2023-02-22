@@ -52,8 +52,19 @@ const player = new Fighter({
       framesMax: 10,
       framesHold: 4,
     },
+    idleReverse: {
+      imageSrc: "./assets/player/idle_Reverse.png",
+      framesMax: 10,
+      framesHold: 4,
+    },
     run: {
       imageSrc: "./assets/player/Run.png",
+      framesMax: 8,
+      image: new Image(),
+      framesHold: 4,
+    },
+    runReverse: {
+      imageSrc: "./assets/player/Run_Reverse.png",
       framesMax: 8,
       image: new Image(),
       framesHold: 4,
@@ -64,32 +75,82 @@ const player = new Fighter({
       framesHold: 4,
       image: new Image(),
     },
+    jumpReverse: {
+      imageSrc: "./assets/player/Jump_Reverse.png",
+      framesMax: 3,
+      framesHold: 4,
+      image: new Image(),
+    },
     fall: {
       imageSrc: "./assets/player/fall.png",
       framesMax: 3,
       framesHold: 4,
       image: new Image(),
     },
+    fallReverse: {
+      imageSrc: "./assets/player/fall_Reverse.png",
+      framesMax: 3,
+      framesHold: 4,
+      image: new Image(),
+    },
     attack: {
-      imageSrc: "./assets/player/Attack3.png",
+      imageSrc: "./assets/player/attack.png",
+      framesMax: 8,
+      image: new Image(),
+      framesHold: 2,
+    },
+    attackReverse: {
+      imageSrc: "./assets/player/attack_Reverse.png",
+      framesMax: 8,
+      image: new Image(),
+      framesHold: 2,
+    },
+    attackAux: {
+      imageSrc: "./assets/player/attack.png",
       framesMax: 8,
       image: new Image(),
       framesHold: 2,
     },
     takeHit: {
-      imageSrc: "./assets/player/Take hit.png",
+      imageSrc: "./assets/player/takeHit.png",
+      framesMax: 3,
+    },
+    takeHitReverse: {
+      imageSrc: "./assets/player/takeHit_Reverse.png",
+      framesMax: 3,
+    },
+    takeHitAux: {
+      imageSrc: "./assets/player/takeHit.png",
       framesMax: 3,
     },
     death: {
-      imageSrc: "./assets/player/Death.png",
+      imageSrc: "./assets/player/death.png",
+      framesMax: 7,
+      scale: 3.5,
+    },
+    deathReverse: {
+      imageSrc: "./assets/player/death_Reverse.png",
+      framesMax: 7,
+      scale: 3.5,
+    },
+    deathAux: {
+      imageSrc: "./assets/player/death.png",
       framesMax: 7,
       scale: 3.5,
     },
   },
   attackBox: {
     offset: {
-      x: 150,
+      x: -20,
       y: 50,
+    },
+    width: 260,
+    height: 50,
+  },
+  attackBoxReverse: {
+    offset: {
+      x: -150,
+      y: -50,
     },
     width: 100,
     height: 50,
@@ -98,7 +159,7 @@ const player = new Fighter({
 
 const enemy = new Fighter({
   position: {
-    x: 700,
+    x: 800,
     y: 0,
   },
   velocity: {
@@ -122,8 +183,19 @@ const enemy = new Fighter({
       framesMax: 11,
       framesHold: 4,
     },
+    idleReverse: {
+      imageSrc: "./assets/enemy/idle_Reverse.png",
+      framesMax: 11,
+      framesHold: 4,
+    },
     run: {
       imageSrc: "./assets/enemy/Run.png",
+      framesMax: 8,
+      image: new Image(),
+      framesHold: 4,
+    },
+    runReverse: {
+      imageSrc: "./assets/enemy/Run_Reverse.png",
       framesMax: 8,
       image: new Image(),
       framesHold: 4,
@@ -134,20 +206,52 @@ const enemy = new Fighter({
       framesHold: 4,
       image: new Image(),
     },
+    jumpReverse: {
+      imageSrc: "./assets/enemy/Jump_Reverse.png",
+      framesMax: 3,
+      framesHold: 4,
+      image: new Image(),
+    },
     fall: {
       imageSrc: "./assets/enemy/fall.png",
       framesMax: 3,
       framesHold: 4,
       image: new Image(),
     },
+    fallReverse: {
+      imageSrc: "./assets/enemy/fall_Reverse.png",
+      framesMax: 3,
+      framesHold: 4,
+      image: new Image(),
+    },
     attack: {
-      imageSrc: "./assets/enemy/Attack2.png",
+      imageSrc: "./assets/enemy/attack.png",
+      framesMax: 7,
+      image: new Image(),
+      framesHold: 2,
+    },
+    attackReverse: {
+      imageSrc: "./assets/enemy/attack_Reverse.png",
+      framesMax: 7,
+      image: new Image(),
+      framesHold: 2,
+    },
+    attackAux: {
+      imageSrc: "./assets/enemy/attack.png",
       framesMax: 7,
       image: new Image(),
       framesHold: 2,
     },
     takeHit: {
-      imageSrc: "./assets/enemy/Take hit.png",
+      imageSrc: "./assets/enemy/takeHit.png",
+      framesMax: 4,
+    },
+    takeHitReverse: {
+      imageSrc: "./assets/enemy/takeHit_Reverse.png",
+      framesMax: 4,
+    },
+    takeHitAux: {
+      imageSrc: "./assets/enemy/takeHit.png",
       framesMax: 4,
     },
     death: {
@@ -155,8 +259,26 @@ const enemy = new Fighter({
       framesMax: 11,
       scale: 3.85,
     },
+    deathReverse: {
+      imageSrc: "./assets/enemy/death_Reverse.png",
+      framesMax: 11,
+      scale: 3,
+    },
+    deathAux: {
+      imageSrc: "./assets/enemy/death.png",
+      framesMax: 11,
+      scale: 3.85,
+    },
   },
   attackBox: {
+    offset: {
+      x: -20,
+      y: 50,
+    },
+    width: 260,
+    height: 50,
+  },
+  attackBoxReverse: {
     offset: {
       x: -185,
       y: 50,
@@ -165,8 +287,6 @@ const enemy = new Fighter({
     height: 50,
   },
 });
-
-enemy.draw();
 
 const keys = {
   w: {
@@ -205,43 +325,87 @@ function animate() {
   player.velocity.x = 0;
   enemy.velocity.x = 0;
 
-  if (keys.a.pressed & (player.lastKey === "a")) {
-    player.velocity.x = -5;
-    player.switchSprite("run");
-  } else if (keys.d.pressed & (player.lastKey === "d")) {
-    player.velocity.x = 5;
-    player.switchSprite("run");
+  if (player.position.x >= enemy.position.x) {
+    if (keys.a.pressed & (player.lastKey === "a")) {
+      player.velocity.x = -5;
+      player.switchSprite("runReverse");
+    } else if (keys.d.pressed & (player.lastKey === "d")) {
+      player.velocity.x = +5;
+      player.switchSprite("runReverse");
+    } else {
+      player.switchSprite("idleReverse");
+    }
+
+    if (player.velocity.y < 0) {
+      player.switchSprite("jumpReverse");
+    } else if (player.velocity.y > 0) {
+      player.switchSprite("fallReverse");
+    }
   } else {
-    player.switchSprite("idle");
+    if (keys.a.pressed & (player.lastKey === "a")) {
+      player.velocity.x = -5;
+      player.switchSprite("run");
+    } else if (keys.d.pressed & (player.lastKey === "d")) {
+      player.velocity.x = 5;
+      player.switchSprite("run");
+    } else {
+      player.switchSprite("idle");
+    }
+
+    if (player.velocity.y < 0) {
+      player.switchSprite("jump");
+    } else if (player.velocity.y > 0) {
+      player.switchSprite("fall");
+    }
   }
 
-  if (player.velocity.y < 0) {
-    player.switchSprite("jump");
-  } else if (player.velocity.y > 0) {
-    player.switchSprite("fall");
-  }
+  if (player.position.x >= enemy.position.x) {
+    if (keys.ArrowLeft.pressed & (enemy.lastKey === "ArrowLeft")) {
+      enemy.velocity.x = -5;
+      enemy.switchSprite("runReverse");
+    } else if (keys.ArrowRight.pressed & (enemy.lastKey === "ArrowRight")) {
+      enemy.velocity.x = 5;
+      enemy.switchSprite("runReverse");
+    } else {
+      enemy.switchSprite("idleReverse");
+    }
 
-  if (keys.ArrowLeft.pressed & (enemy.lastKey === "ArrowLeft")) {
-    enemy.velocity.x = -5;
-    enemy.switchSprite("run");
-  } else if (keys.ArrowRight.pressed & (enemy.lastKey === "ArrowRight")) {
-    enemy.velocity.x = 5;
-    enemy.switchSprite("run");
+    if (enemy.velocity.y < 0) {
+      enemy.switchSprite("jumpReverse");
+    } else if (enemy.velocity.y > 0) {
+      enemy.switchSprite("fallReverse");
+    }
   } else {
-    enemy.switchSprite("idle");
+    if (keys.ArrowLeft.pressed & (enemy.lastKey === "ArrowLeft")) {
+      enemy.velocity.x = -5;
+      enemy.switchSprite("run");
+    } else if (keys.ArrowRight.pressed & (enemy.lastKey === "ArrowRight")) {
+      enemy.velocity.x = 5;
+      enemy.switchSprite("run");
+    } else {
+      enemy.switchSprite("idle");
+    }
+
+    if (enemy.velocity.y < 0) {
+      enemy.switchSprite("jump");
+    } else if (enemy.velocity.y > 0) {
+      enemy.switchSprite("fall");
+    }
   }
 
-  if (enemy.velocity.y < 0) {
-    enemy.switchSprite("jump");
-  } else if (enemy.velocity.y > 0) {
-    enemy.switchSprite("fall");
+  if (player.position.x >= enemy.position.x) {
+    qualquernomeaqui = rectangularCollision({
+      rectangule1: enemy,
+      rectangule2: player,
+    });
+  } else {
+    qualquernomeaqui = rectangularCollision({
+      rectangule1: player,
+      rectangule2: enemy,
+    });
   }
 
-  if (
-    rectangularCollision({ rectangule1: player, rectangule2: enemy }) &
-    player.isAttacking &
-    (player.framesCurrent === 3)
-  ) {
+  if (qualquernomeaqui && player.isAttacking && player.framesCurrent === 3) {
     enemy.takeHit();
     player.isAttacking = false;
     gsap.to("#enemy-health", {
@@ -253,11 +417,7 @@ function animate() {
     player.isAttacking = false;
   }
 
-  if (
-    rectangularCollision({ rectangule1: enemy, rectangule2: player }) &
-    enemy.isAttacking &
-    (enemy.framesCurrent === 3)
-  ) {
+  if (qualquernomeaqui && enemy.isAttacking && enemy.framesCurrent === 3) {
     player.takeHit();
     enemy.isAttacking = false;
     gsap.to("#player-health", {
@@ -265,14 +425,10 @@ function animate() {
     });
   }
 
-  if (enemy.isAttacking && enemyframesCurrent === 2) {
-    enemy.isAttacking = false;
-  }
-
   if (enemy.health <= 0 || player.health <= 0) {
     determineWinner({ player, enemy, timerId });
   }
-  if (enemy.isAttacking & (enemy.framesCurrent === 3)) {
+  if (enemy.isAttacking & (enemy.framesCurrent === 4)) {
     enemy.isAttacking = false;
   }
 }
@@ -315,7 +471,7 @@ window.addEventListener("keydown", (event) => {
         keys.ArrowRight.pressed = true;
         enemy.lastKey = "ArrowRight";
         break;
-      case "0":
+      case "ArrowDown":
         enemy.attack();
         break;
     }
@@ -342,9 +498,6 @@ window.addEventListener("keyup", (event) => {
       break;
     case "ArrowRight":
       keys.ArrowRight.pressed = false;
-      break;
-    case "0":
-      enemy.isAttacking = true;
       break;
   }
 });
