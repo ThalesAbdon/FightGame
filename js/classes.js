@@ -54,6 +54,7 @@ class Fighter extends Sprite {
   constructor({
     position,
     velocity,
+    inAir = false,
     color = "red",
     imageSrc,
     scale = 1,

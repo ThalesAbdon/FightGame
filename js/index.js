@@ -430,6 +430,7 @@ function animate() {
   if (enemy.isAttacking & (enemy.framesCurrent === 4)) {
     enemy.isAttacking = false;
   }
+  console.log(player.velocity.y);
 }
 
 animate();
@@ -442,7 +443,9 @@ window.addEventListener("keydown", (event) => {
   if (!player.dead) {
     switch (event.key) {
       case "w":
-        player.velocity.y = -20;
+        if (player.velocity.y === 0) {
+          player.velocity.y = -20;
+        }
         break;
       case "a":
         if (clicked === false) {
@@ -468,7 +471,9 @@ window.addEventListener("keydown", (event) => {
   if (!enemy.dead) {
     switch (event.key) {
       case "ArrowUp":
-        enemy.velocity.y = -20;
+        if (enemy.velocity.y === 0) {
+          enemy.velocity.y = -20;
+        }
         break;
       case "ArrowLeft":
         if (clicked === false) {
