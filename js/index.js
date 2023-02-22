@@ -1,6 +1,5 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
-
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -446,10 +445,18 @@ window.addEventListener("keydown", (event) => {
         player.velocity.y = -20;
         break;
       case "a":
+        if (clicked === false) {
+          audio.battle.play();
+          clicked = true;
+        }
         keys.a.pressed = true;
         player.lastKey = "a";
         break;
       case "d":
+        if (clicked === false) {
+          audio.battle.play();
+          clicked = true;
+        }
         keys.d.pressed = true;
         player.lastKey = "d";
         break;
@@ -464,10 +471,18 @@ window.addEventListener("keydown", (event) => {
         enemy.velocity.y = -20;
         break;
       case "ArrowLeft":
+        if (clicked === false) {
+          audio.battle.play();
+          clicked = true;
+        }
         keys.ArrowLeft.pressed = true;
         enemy.lastKey = "ArrowLeft";
         break;
       case "ArrowRight":
+        if (clicked === false) {
+          audio.battle.play();
+          clicked = true;
+        }
         keys.ArrowRight.pressed = true;
         enemy.lastKey = "ArrowRight";
         break;
@@ -501,3 +516,5 @@ window.addEventListener("keyup", (event) => {
       break;
   }
 });
+
+let clicked = false;

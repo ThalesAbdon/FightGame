@@ -122,7 +122,7 @@ class Fighter extends Sprite {
     if (enemy.position.x <= -75) {
       enemy.position.x = -75;
     }
-    console.log(player.position.x);
+
     if (player.position.x >= 835) {
       player.position.x = 835;
     }
