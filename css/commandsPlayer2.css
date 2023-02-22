@@ -1,22 +1,22 @@
 .commandsPlayer2{
     display: flex;
     position: absolute;
-    margin-left: 1375px;
+    margin-left: 1280px;
     margin-bottom: 280px;
     justify-content: center;
     color: #fff;
-    width: 300px;
+    width: 250px;
     height: 300px;
     border: 5px solid #000
 }
 
 .commandsPlayer2 h1{
     justify-content: center;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .commandsPlayer2 h2{
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .commandsPlayer2 span{
