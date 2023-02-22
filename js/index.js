@@ -96,19 +96,19 @@ const player = new Fighter({
       imageSrc: "./assets/player/attack.png",
       framesMax: 8,
       image: new Image(),
-      framesHold: 2,
+      framesHold: 4,
     },
     attackReverse: {
       imageSrc: "./assets/player/attack_Reverse.png",
       framesMax: 8,
       image: new Image(),
-      framesHold: 2,
+      framesHold: 4,
     },
     attackAux: {
       imageSrc: "./assets/player/attack.png",
       framesMax: 8,
       image: new Image(),
-      framesHold: 2,
+      framesHold: 4,
     },
     takeHit: {
       imageSrc: "./assets/player/takeHit.png",
@@ -227,19 +227,19 @@ const enemy = new Fighter({
       imageSrc: "./assets/enemy/attack.png",
       framesMax: 7,
       image: new Image(),
-      framesHold: 2,
+      framesHold: 4,
     },
     attackReverse: {
       imageSrc: "./assets/enemy/attack_Reverse.png",
       framesMax: 7,
       image: new Image(),
-      framesHold: 2,
+      framesHold: 4,
     },
     attackAux: {
       imageSrc: "./assets/enemy/attack.png",
       framesMax: 7,
       image: new Image(),
-      framesHold: 2,
+      framesHold: 4,
     },
     takeHit: {
       imageSrc: "./assets/enemy/takeHit.png",
@@ -460,7 +460,7 @@ window.addEventListener("keydown", (event) => {
         keys.d.pressed = true;
         player.lastKey = "d";
         break;
-      case " ":
+      case "s":
         player.attack();
         break;
     }
