@@ -112,6 +112,7 @@ class Fighter extends Sprite {
     //   this.attackBox.width,
     //   this.attackBox.height
     // );
+
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
     if (player.position.x <= -75) {
@@ -120,6 +121,14 @@ class Fighter extends Sprite {
 
     if (enemy.position.x <= -75) {
       enemy.position.x = -75;
+    }
+    console.log(player.position.x);
+    if (player.position.x >= 835) {
+      player.position.x = 835;
+    }
+
+    if (enemy.position.x >= 835) {
+      enemy.position.x = 835;
     }
 
     if (this.position.y + this.height + this.velocity.y >= canvas.height - 80) {
