@@ -47,6 +47,9 @@ class Sprite {
     this.draw();
     this.framesElapsed++;
     this.animateFrames();
+    if (control === 0) {
+      document.querySelector("#btn").style.display = "none";
+    }
   }
 }
 
@@ -157,11 +160,24 @@ class Fighter extends Sprite {
     }
   }
 
+  revive() {
+    this.switchSprite("idle");
+    this.health = 100;
+    if ((this.position = player.position)) {
+      this.position = { x: 0, y: 0 };
+    } else {
+      this.position = { x: 800, y: 0 };
+    }
+    this.dead = false;
+  }
+
   switchSprite(sprite) {
-    if (this.image === this.sprites.death.image) {
-      if (this.framesCurrent === this.sprites.death.framesMax - 1)
-        this.dead = true;
-      return;
+    if (this.health <= 0) {
+      if (this.image === this.sprites.death.image) {
+        if (this.framesCurrent === this.sprites.death.framesMax - 1)
+          this.dead = true;
+        return;
+      }
     }
 
     if (
@@ -297,7 +313,6 @@ class Fighter extends Sprite {
             this.image = this.sprites.death.image;
             this.framesMax = this.sprites.death.framesMax;
             this.scale = this.sprites.deathReverse.scale;
-
             this.framesCurrent = 0;
           } else {
             this.sprites.death.image.src = this.sprites.deathAux.image.src;

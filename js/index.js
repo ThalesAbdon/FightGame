@@ -430,13 +430,12 @@ function animate() {
   if (enemy.isAttacking & (enemy.framesCurrent === 4)) {
     enemy.isAttacking = false;
   }
-  console.log(player.velocity.y);
 }
 
 animate();
 
 window.addEventListener("keydown", (event) => {
-  if (player.dead || enemy.dead) {
+  if (player.dead || enemy.dead || timer === 0) {
     return;
   }
 
@@ -448,17 +447,17 @@ window.addEventListener("keydown", (event) => {
         }
         break;
       case "a":
-        if (clicked === false) {
+        if (playMusic === false) {
           audio.battle.play();
-          clicked = true;
+          playMusic = true;
         }
         keys.a.pressed = true;
         player.lastKey = "a";
         break;
       case "d":
-        if (clicked === false) {
+        if (playMusic === false) {
           audio.battle.play();
-          clicked = true;
+          playMusic = true;
         }
         keys.d.pressed = true;
         player.lastKey = "d";
@@ -476,17 +475,17 @@ window.addEventListener("keydown", (event) => {
         }
         break;
       case "ArrowLeft":
-        if (clicked === false) {
+        if (playMusic === false) {
           audio.battle.play();
-          clicked = true;
+          playMusic = true;
         }
         keys.ArrowLeft.pressed = true;
         enemy.lastKey = "ArrowLeft";
         break;
       case "ArrowRight":
-        if (clicked === false) {
+        if (playMusic === false) {
           audio.battle.play();
-          clicked = true;
+          playMusic = true;
         }
         keys.ArrowRight.pressed = true;
         enemy.lastKey = "ArrowRight";
@@ -522,4 +521,4 @@ window.addEventListener("keyup", (event) => {
   }
 });
 
-let clicked = false;
+let playMusic = false;
