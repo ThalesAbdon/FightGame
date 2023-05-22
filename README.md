@@ -1,5 +1,4 @@
 <h1 align="center"> Fight Game </h1>
-Bem-vindo ao repositório do FightGame!
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=%20FINISHED&color=GREEN&style=for-the-badge)
 ![fight](https://github.com/ThalesAbdon/FightGame/assets/87333834/5d5b1309-477b-4e80-8bdb-b6cfee83593b)
